@@ -1,71 +1,181 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext");
 /* Variables */
 /* Global */
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-a { color: #58B19F; text-decoration: none; }
+a {
+  color: #58B19F;
+  text-decoration: none;
+}
 
-body { background: #fff; font-family: "Source Sans Pro", sans-serif; color: #444; font-weight: 300; font-size: 16px; line-height: 1.7; }
+body {
+  background: #fff;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #444;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+}
 
-.container { max-width: 1140px; margin: 0 auto; }
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
 
-.section-title { font-size: 22px; text-transform: uppercase; font-family: "Oswald", sans-serif; font-weight: 600; }
+.section-title {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+}
 
-.section-title span { text-transform: none; font-weight: 400; color: #777777; }
+.section-title span {
+  text-transform: none;
+  font-weight: 400;
+  color: #777777;
+}
 
 /* Layout */
-.wrapper { display: -ms-flexbox; display: flex; margin-left: 10px; }
+.wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 10px;
+}
 
-.sidebar { -ms-flex: 1 0 0px; flex: 1 0 0; }
+.sidebar {
+  -ms-flex: 1 0 0px;
+      flex: 1 0 0;
+}
 
-.posts { -ms-flex: 2 0 0px; flex: 2 0 0; position: relative; min-height: 650px; }
+.posts {
+  -ms-flex: 2 0 0px;
+      flex: 2 0 0;
+  position: relative;
+  min-height: 650px;
+}
 
-.sidebar, .posts { background: #fff; margin-right: 10px; padding: 20px; border: 1px solid #444; border-radius: 5px; }
+.sidebar, .posts {
+  background: #fff;
+  margin-right: 10px;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 5px;
+}
 
 /* Logo */
-.logo { font-family: "Sacramento", cursive; font-weight: 400; font-size: 104px; line-height: 1; text-align: center; color: #58B19F; }
+.logo {
+  font-family: "Sacramento", cursive;
+  font-weight: 400;
+  font-size: 104px;
+  line-height: 1;
+  text-align: center;
+  color: #58B19F;
+}
 
 /* Lists */
-.list { list-style-type: none; margin: 0; padding: 0; }
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-.list .active { font-weight: bold; }
+.list .active {
+  font-weight: bold;
+}
 
-.list-horizontal li { display: inline-block; }
+.list-horizontal li {
+  display: inline-block;
+}
 
 /* Authors */
-.authors li { margin-bottom: 12px; }
+.authors li {
+  margin-bottom: 12px;
+}
 
 /* Post */
-.post { position: absolute; opacity: 0; }
+.post {
+  position: absolute;
+  opacity: 0;
+}
 
-.post.active { z-index: 1; opacity: 1; transition: 2s; }
+.post.active {
+  z-index: 1;
+  opacity: 1;
+  transition: 2s;
+}
 
-.post-author { font-style: italic; }
+.post-author {
+  font-style: italic;
+}
 
-.post p { padding: 0 5px; }
+.post p {
+  padding: 0 5px;
+}
 
-.post-tags { display: -ms-flexbox; display: flex; }
+.post-tags {
+  display: -ms-flexbox;
+  display: flex;
+}
 
-.post-tags p { margin: 0 10px 0 0; }
+.post-tags p {
+  margin: 0 5px 0 0;
+}
+
+.post-tags ul li {
+  margin-left: 5px;
+}
 
 /*Media Queries*/
-@media screen and (max-width: 992px) { /*Layout*/
-  .wrapper { -ms-flex-direction: column; flex-direction: column; }
-  .posts { min-height: 500px; }
+@media screen and (max-width: 992px) {
+  /*Layout*/
+  .wrapper {
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+  .posts {
+    min-height: 500px;
+  }
   /*List*/
-  .list li { display: inline-block; padding-left: 10px; } }
+  .list li {
+    display: inline-block;
+    padding-left: 10px;
+  }
+}
 
-@media screen and (max-width: 762px) { /*Layout*/
-  .posts { min-height: 570px; } }
+@media screen and (max-width: 762px) {
+  /*Layout*/
+  .posts {
+    min-height: 570px;
+  }
+}
 
-@media screen and (max-width: 576px) { /*Layout*/
-  .posts { min-height: 650px; } }
+@media screen and (max-width: 576px) {
+  /*Layout*/
+  .posts {
+    min-height: 650px;
+  }
+}
 
-@media screen and (max-width: 450px) { /*Layout*/
-  .posts { min-height: 750px; } }
+@media screen and (max-width: 450px) {
+  /*Layout*/
+  .posts {
+    min-height: 750px;
+  }
+}
 
-@media screen and (max-width: 360px) { /*Layout*/
-  .posts { min-height: 950px; } }
+@media screen and (max-width: 360px) {
+  /*Layout*/
+  .posts {
+    min-height: 950px;
+  }
+}
 
-@media screen and (max-width: 260px) { /*Layout*/
-  .posts { min-height: 1050px; } }
+@media screen and (max-width: 260px) {
+  /*Layout*/
+  .posts {
+    min-height: 1050px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
