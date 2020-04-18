@@ -143,6 +143,36 @@ body {
     padding-left: 10px;
   }
 }
+.tags a {
+	display: inline-block;
+}
+.tag-size-1 {
+	font-size: 100%;
+	margin-right: 2px;
+}
+
+.tag-size-2 {
+	font-size: 130%;
+	margin-right: 2px;
+}
+
+.tag-size-3 {
+	font-size: 140%;
+	margin-right: 2px;
+}
+
+.tag-size-4 {
+	font-size: 150%;
+	margin-right: 2px;
+}
+.tag-size-5 {
+	font-size: 180%;
+	margin-right: 2px;
+}
+
+.authors a {
+	display: block;
+}
 
 @media screen and (max-width: 762px) {
   /*Layout*/
