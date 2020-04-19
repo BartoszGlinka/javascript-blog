@@ -1,4 +1,13 @@
+const templates = {
+	articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+	tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+	authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+	tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
+	authorListLink: Handlebars.compile(document.querySelector('#template-author-List-Link').innerHTML),
+}
+
 'use strict';
+
 {
   const titleClickHandler = function(event) {
     event.preventDefault()
@@ -61,11 +70,14 @@
 
     for (const article of articles) {
     /* get the article id */
-      const articleID = article.getAttribute('id')
+      const articleId = article.getAttribute('id')
       /* find the title element */ /* get the title from the title element */
       const articleTitle = article.querySelector(opts.TitleSelector).innerHTML
       /* create HTML of the link */
-      const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>'
+      //const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>'
+	  const linkHTMLData = {id: articleId, title: articleTitle}
+	  
+	  const linkHTML = templates.articleLink(linkHTMLData)
       /* insert link into titleList */
       titleList.insertAdjacentHTML('afterbegin', linkHTML)
       html = html + linkHTML
@@ -126,7 +138,11 @@
       /* START LOOP: for each tag */
       for (const tag of articleTagsArray) {
         /* generate HTML of the link */
-        const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>'
+
+		const linkHTMLData = {id: tag, title: tag};
+	
+		const linkHTML = templates.tagLink(linkHTMLData);
+
         /* add generated code to html variable */
         html = html + linkHTML 
 		/* [NEW] check if this link is NOT already in allTags */
@@ -147,17 +163,24 @@
 	/* [NEW] add html from allTags to tagList */
     const tagsParams = calculateTagsParams(allTags)
 	
-    let allTagsHTML = '' //never used
-
+    //let allTagsHTML = ''
+	const allTagsData = {tags: []};
 	/* [NEW] START LOOP: for each tag in allTags: */
 	for(let tag in allTags){
 		/*[NEW] generate code of a link and add it to allTagsHTML */
 		const tagLinkHTML = '<a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) +'" >' + tag
 
-		allTagsHTML += tagLinkHTML
+		//allTagsHTML += tagLinkHTML
+		allTagsData.tags.push({
+		  tag: tag,
+		  count: allTags[tag],
+		  className: calculateTagClass(allTags[tag], tagsParams)
+		});
 	}
 		/*[NEW] add HTML from allTagsHTML to tagList*/
-		tagList.innerHTML = allTagsHTML;
+		//tagList.innerHTML = allTagsHTML;
+	  	tagList.innerHTML = templates.tagCloudLink(allTagsData)
+	  	//console.log(allTagsData)
 	}
 
   generateTags()
@@ -212,9 +235,11 @@
 		const authorWrappers = article.querySelector(opts.ArticleAuthorSelector) 
 
 		const authorData = article.getAttribute('data-author')
-
-		const linkHtml = '<a href="#author-' + authorData + '">'+ 'by' + ' ' + authorData + '</a>'
 		
+		const linkHTMLData = {id: authorData, title: authorData};
+		
+		const linkHtml = templates.authorLink(linkHTMLData);
+
 		const authorList = document.querySelector('.authors');
 		
 		authorWrappers.insertAdjacentHTML('afterbegin', linkHtml)
@@ -224,16 +249,21 @@
 		} else {
 			allAuthors[authorData]++;
 		}
-		
-		let allAuthorsHTML = ''
-		
+	
+		//let allAuthorsHTML = ''
+		const allAuthorsData = {author: []};
+
 		for(let author in allAuthors){
-
-			allAuthorsHTML = allAuthorsHTML+ '<a href="#author-' + author + '">' + author + ' ' +'(' + allAuthors[author] + ')</a>'
-
+			//allAuthorsHTML = allAuthorsHTML+ '<a href="#author-' + author + '">' + author + ' ' +'(' + allAuthors[author] + ')</a>'
+			allAuthorsData.author.push({
+  				author: author,
+				count: allAuthors[authorData],
+  				//className: calculateTagClass(allAuthors[author])
+			});
 		}
-		
-		authorList.innerHTML = allAuthorsHTML;
+		authorList.innerHTML = templates.authorListLink(allAuthorsData);
+		console.log(authorList)
+		//console.log(allAuthorsData)
 	}
   }
 	
