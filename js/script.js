@@ -9,10 +9,10 @@ const templates = {
 'use strict';
 
 {
-  const titleClickHandler = function(event) {
+  const titleClickHandler = function(event){
     event.preventDefault()
     const clickedElement = this
-
+    const wrapperLinks = document.querySelector('.list .titles');
     /* [DONE] remove class 'active' from all article links  */
 
     const activeLinks = document.querySelectorAll('.titles a.active')
@@ -32,25 +32,25 @@ const templates = {
     for (const activeArticle of activeArticles) {
       activeArticle.classList.remove('active')
     }
-
+    
     /* [DONE] get 'href' attribute from the clicked link */
     const articleSelector = clickedElement.getAttribute('href')
-
+    
     /* [DONE] find the correct article using the selector (value of 'href' attribute) */
     const targetArticle = document.querySelector(articleSelector)
-
+    console.log(targetArticle)    
     /* [DONE] add class 'active' to the correct article */
     targetArticle.classList.add('active')
   }
   
   const opts = {
     ArticleSelector: '.post',
-	TitleSelector: '.post-title',
-	TitleListSelector: '.titles',
-	ArticleTagsSelector: '.post-tags .list',
-	LinksTagSelector: '.list a',
-	ArticleAuthorSelector: '.post-author',
-    LinksAuthorSelector: '.post-author a',
+    TitleSelector: '.post-title',
+    TitleListSelector: '.titles',
+    ArticleTagsSelector: '.post-tags .list',
+    LinksTagSelector: '.list a[href^="#tag-"]',
+    ArticleAuthorSelector: '.post-author',
+    LinksAuthorSelector: 'a[href^="#author"]',
     TagsListSelector: '.tags.list',
     AuthorsListSelector: '.tags.authors',
     CloudClassCount: 5,
@@ -76,12 +76,12 @@ const templates = {
       /* create HTML of the link */
       //const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>'
 	  const linkHTMLData = {id: articleId, title: articleTitle}
-	  
-	  const linkHTML = templates.articleLink(linkHTMLData)
+	  const articleID = article.getAttribute('id');
+	  //const linkHTML = templates.articleLink(linkHTMLData)
+    const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
       /* insert link into titleList */
       titleList.insertAdjacentHTML('afterbegin', linkHTML)
       html = html + linkHTML
-	
     }
 
     titleList.innerHTML = html
@@ -262,7 +262,6 @@ const templates = {
 			});
 		}
 		authorList.innerHTML = templates.authorListLink(allAuthorsData);
-		console.log(authorList)
 		//console.log(allAuthorsData)
 	}
   }
