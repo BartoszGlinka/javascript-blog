@@ -127,6 +127,27 @@ body {
   margin-left: 5px;
 }
 
+/*TAGS*/
+.tag-size-1 {
+  font-size: 90%;
+}
+
+.tag-size-2 {
+  font-size: 110%;
+}
+
+.tag-size-3 {
+  font-size: 130%;
+}
+
+.tag-size-4 {
+  font-size: 150%;
+}
+
+.tag-size-5 {
+  font-size: 170%;
+}
+
 /*Media Queries*/
 @media screen and (max-width: 992px) {
   /*Layout*/
